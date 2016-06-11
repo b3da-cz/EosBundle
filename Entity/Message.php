@@ -53,6 +53,49 @@ class Message
      */
     private $clientId;
 
+    /**
+     * @param null $cat
+     * @return array|string
+     */
+    public function getValues($cat = null) {
+        $values = [];
+        $values['id'] = $this->id;
+        $values['data'] = $this->data;
+        $values['iv'] = $this->iv;
+        $values['key'] = $this->key;
+        $values['client_id'] = $this->clientId;
+
+        if ($cat) {
+            $values = $values['id'] . ':' . $values['data'] . ':' . $values['iv'] . ':' . $values['key'] . ':' . $values['client_id'];
+        }
+
+        return $values;
+    }
+
+    /**
+     * @param $values
+     * @return Message
+     */
+    public function setValues($values) {
+        if (!is_object($values)) {
+            $tmpArr = explode(':', $values);
+            $this->id = $tmpArr[0];
+            $this->data = $tmpArr[1];
+            $this->iv = $tmpArr[2];
+            $this->key = $tmpArr[3];
+            $this->clientId = $tmpArr[4];
+        } else {
+            $this->id = $values->id;
+            $this->data = $values->data;
+            $this->iv = $values->iv;
+            $this->key = $values->key;
+            $this->clientId = $values->client_id;
+        }
+
+
+
+        return $this;
+    }
 
     /**
      * Get id

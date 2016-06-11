@@ -115,7 +115,7 @@ class Eos
         $encryptedEncryptionKey = hex2bin($message->getKey());
 
         $client = $this->em->getRepository(Client::class)->find($clientId);
-        
+
         if(!$client) {
             return null;
         }

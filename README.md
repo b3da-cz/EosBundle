@@ -58,3 +58,78 @@
 >$decryptedData = $eos->decrypt($message);
 >// $decryptedData === 'msg data .. foo bar baz';
 >```
+
+---
+
+##### simple API for basic tasks (optional)
+
+* import routes into `routing.yml`:
+>```yaml
+>b3da_easy_open_ssl:
+>     resource: "@b3daEasyOpenSslBundle/Controller/"
+>     type:     annotation
+>     prefix:   /eos/
+>```
+
+* /eos/msg-api/client/create/ [POST]
+>```json
+>Response:
+>
+>{"status":"success","id":"3ead5521-2fbc-11e6-834a-f0def1ff5901"}
+>
+>or
+>
+>{"status":"error","details":"key pair generating failed"}
+>```
+
+* /eos/msg-api/client/export-public/{id}/ [GET]
+>```json
+>Response:
+>
+>{"status":"success","data":{"id":"3ead5521-2fbc-11e6-834a-f0def1ff5901","pubkey":"LS0tLS1CR .. S0tLQ=="}}
+>
+>or
+>
+>{"status":"error","details":"no client for id"}
+>```
+
+* /eos/msg-api/client/import-public/{id}/ [POST]
+>```json
+>Request:
+>
+>{"data":{"id":"3ead5521-2fbc-11e6-834a-f0def1ff5901","pubkey":"LS0tLS1CR .. S0tLQ=="}}
+>
+>Response:
+>
+>{"status":"success","id":"3ead5521-2fbc-11e6-834a-f0def1ff5901"}
+>
+>or
+>
+>{"status":"error","details":"no data to import"}
+>```
+
+* /eos/msg-api/msg/encrypt/{clientId}/{data}/ [GET]
+>```json
+>Response:
+>
+>{"status":"success","data":{"message":":774c6b663650636 .. 34346616f5901"}}
+>
+>or
+>
+>{"status":"error","details":"no client for id"}
+>```
+
+* /eos/msg-api/msg/decrypt/{data}/ [GET]
+>```json
+>Request:
+>
+>/eos/msg-api/msg/decrypt/{"message":":774c6b663650636 .. 34346616f5901"}/
+>
+>Response:
+>
+>{"status":"success","data":"foo bar"}
+>
+>or
+>
+>{"status":"error","details":"wrong format"}
+>```

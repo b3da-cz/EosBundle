@@ -29,14 +29,14 @@ class Client
     /**
      * @var string $privKey
      *
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=TRUE)
      */
     private $privKey;
 
     /**
      * @var string $pubKey
      *
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=TRUE)
      */
     private $pubKey;
 

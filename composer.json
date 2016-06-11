@@ -1,0 +1,25 @@
+{
+    "name": "b3da/eos-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony bundle for easy OpenSSL operations",
+    "keywords": ["symfony","openssl"],
+    "homepage": "https://github.com/b3da-cz/EosBundle",
+    "license": "GPLV3",
+    "authors": [
+        {
+            "name": "Tomas Beran",
+            "email": "b3da@b3da.net",
+            "homepage": "http://b3da.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "symfony/framework-bundle": "~2.8|~3.1"
+    },
+    "autoload": {
+        "psr-0": {
+            "b3da\\EasyOpenSslBundle": ""
+        }
+    },
+    "target-dir": "b3da/EasyOpenSslBundle"
+}

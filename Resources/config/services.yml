@@ -1,0 +1,4 @@
+services:
+    b3da_easy_open_ssl.eos:
+        class: b3da\EasyOpenSslBundle\Service\Eos
+        arguments: ["@doctrine.orm.default_entity_manager", %eos_enc_method%]
